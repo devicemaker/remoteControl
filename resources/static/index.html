@@ -1,0 +1,51 @@
+<!doctype html>
+<html ng-app="remote.servo">
+<head>
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.12.1.js"></script>
+    <script src="js/arduino.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+    <div ng-controller="ConnectController">
+        <form novalidate class="simple-form">
+            <table>
+            <tr>
+                <td>server connected:<label ng-bind="connected"></label></td>
+            </tr>
+            <tr >
+                <td ng-show="loggedin == 'not logged in'" width="200">password:<input size=10 type="text" ng-model="login" /></td>
+                <td ng-show="loggedin == 'not logged in'" width="75"><button class="btn btn-primary btn-sm" ng-click="sendLoginMessage(login)">Login</button></td>
+                <td>login status:<label ng-bind="loggedin"></label></td>
+            </tr>
+            </table>
+            <br>
+            <br>
+            <table ng-show="loggedin == 'currently logged in'">
+            <tr>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="sendOnMessage()">On</button>
+                    <button class="btn btn-primary btn-sm" ng-click="sendOffMessage()">Off</button>
+                </td>
+                <td><font size="5">power status:<label ng-bind="power"></label></font></td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="sendIncreaseMessage()">Up</button>
+                    <button class="btn btn-primary btn-sm" ng-click="sendDecreaseMessage()">Down</button>
+                </td>
+                <td colspan="2"><font size="5"> percent output:<label ng-bind="position"></label></font></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-primary btn-sm" ng-click="sendKeepGoingMessage()">Keep Going</button>
+                </td>
+                <td>seconds until timeout:<label ng-bind="timer_value"></label></td>
+                <td>last timeout:<label ng-bind="inactivity"></label></td>
+            </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
